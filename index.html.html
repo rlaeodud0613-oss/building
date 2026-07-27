@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>빌딩 (BUILDING) | 태권도 겨루기 전문 코칭 - 김대영 지도자</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts (Noto Sans KR & Montserrat) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Noto+Sans+KR:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            800: '#0B132B',
+                            900: '#0F172A',
+                            950: '#0A0F1D',
+                        },
+                        brand: {
+                            orange: '#FF5E1A',
+                            'orange-hover': '#E04805',
+                            light: '#FFF8F5'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans KR"', 'sans-serif'],
+                        montserrat: ['"Montserrat"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #FAFAFB;
+            color: #1E293B;
+            word-break: keep-all;
+        }
+
+        /* Scroll Animation Utility */
+        .fade-in-element {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.75s ease-out, transform 0.75s ease-out;
+            will-change: opacity, transform;
+        }
+        
+        .fade-in-element.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Glassmorphism Navigation */
+        .glass-nav {
+            background: rgba(15, 23, 42, 0.88);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0F172A;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #FF5E1A;
+            border-radius: 4px;
+        }
+
+        /* Gradient Borders & Accent effects */
+        .border-gradient {
+            border-image: linear-gradient(to right, #FF5E1A, #0F172A) 1;
+        }
+
+        /* Modal Overlay Transition */
+        .modal-active {
+            display: flex !important;
+            opacity: 1 !important;
+        }
+    </style>
+</head>
+<body class="antialiased text-slate-800 bg-slate-50 selection:bg-brand-orange selection:text-white">
+
+    <!-- Navigation Bar -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-nav border-b border-slate-800/80 transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center space-x-3 group">
+                <div class="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-tr from-brand-orange to-orange-400 rounded-lg flex items-center justify-center text-white font-montserrat font-black text-lg tracking-tighter shadow-md shadow-brand-orange/20">
+                    B
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-montserrat font-black text-lg sm:text-xl text-white tracking-widest leading-none">BUILDING</span>
+                    <span class="text-[10px] text-slate-400 tracking-wider font-light mt-0.5">겨루기 실전 솔루션</span>
+                </div>
+            </a>
+
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
+                <a href="#about" class="hover:text-brand-orange transition-colors">강의 소개</a>
+                <a href="#curriculum" class="hover:text-brand-orange transition-colors">특징 & 방식</a>
+                <a href="#reviews" class="hover:text-brand-orange transition-colors">수강 후기</a>
+                <a href="#faq" class="hover:text-brand-orange transition-colors">FAQ</a>
+            </nav>
+
+            <button onclick="openApplyModal('상단 네비게이션')" class="bg-brand-orange hover:bg-brand-orange-hover text-white text-xs sm:text-sm font-bold px-4 sm:px-6 py-2.5 rounded-full transition-all duration-300 shadow-lg shadow-brand-orange/25 transform hover:-translate-y-0.5 active:translate-y-0 flex items-center space-x-1.5">
+                <span>지금 신청하기</span>
+                <i class="fa-solid font-bold fa-chevron-right text-xs"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative pt-28 pb-20 sm:pt-36 sm:pb-32 bg-navy-900 text-white overflow-hidden">
+        <!-- Background Ambient Glow -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-brand-orange/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -top-24 -right-24 w-96 h-96 bg-slate-800/40 rounded-full blur-2xl pointer-events-none"></div>
+
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 relative z-10 text-center">
+            
+            <!-- Authority Badge -->
+            <div class="inline-flex items-center space-x-2 bg-slate-800/80 border border-slate-700/80 px-3.5 py-1.5 rounded-full mb-6 sm:mb-8 fade-in-element">
+                <span class="w-2 h-2 rounded-full bg-brand-orange animate-pulse"></span>
+                <span class="text-xs sm:text-sm font-medium text-slate-300">선수 11년 출신 · 사범 · 관장 | 김대영 직접 지도</span>
+            </div>
+
+            <!-- Main Catchphrase -->
+            <h1 class="text-3xl sm:text-5xl md:text-6xl font-black leading-tight sm:leading-tight mb-6 sm:mb-8 tracking-tight fade-in-element">
+                단순히 차기만 하는 훈련은 끝났습니다.<br class="hidden sm:block">
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-slate-300">경기 판도를 바꾸는</span> 
+                <span class="text-brand-orange relative inline-block">
+                    진짜 겨루기
+                    <svg class="absolute -bottom-2 left-0 w-full h-2 text-brand-orange/30" viewBox="0 0 100 20" preserveAspectRatio="none">
+                        <path d="M0,10 Q50,20 100,10" stroke="currentColor" stroke-width="4" fill="none" />
+                    </svg>
+                </span>를 빌딩하다.
+            </h1>
+
+            <!-- Subtitle -->
+            <p class="text-base sm:text-xl text-slate-300 max-w-3xl mx-auto mb-10 leading-relaxed font-light fade-in-element">
+                더 이상 득점이 안 나오는 무의미한 반복 연습에 그치지 마세요.<br class="hidden sm:block">
+                선수의 특성을 정밀 분석하고, 실전 타이밍과 경기 운영 감각을 체계적으로 셋업하는 <br class="hidden md:block">
+                <strong class="text-white font-semibold">1:1 맞춤형 겨루기 프리미엄 클래스</strong>
+            </p>
+
+            <!-- Hero Action Buttons -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mb-12 fade-in-element">
+                <button onclick="openApplyModal('히어로 메인 CTA')" class="w-full sm:w-auto bg-brand-orange hover:bg-brand-orange-hover text-white font-bold text-base sm:text-lg px-8 py-4 rounded-xl transition-all duration-300 shadow-xl shadow-brand-orange/20 transform hover:-translate-y-1 active:translate-y-0 flex items-center justify-center space-x-2 group">
+                    <span>겨루기 빌딩 신청하기</span>
+                    <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                </button>
+                <a href="#about" class="w-full sm:w-auto bg-slate-800/80 hover:bg-slate-800 text-slate-200 border border-slate-700 font-semibold text-base sm:text-lg px-8 py-4 rounded-xl transition-all duration-200 flex items-center justify-center">
+                    커리큘럼 자세히 보기
+                </a>
+            </div>
+
+            <!-- Trust Indicators Grid -->
+            <div class="pt-8 border-t border-slate-800/80 grid grid-cols-2 md:grid-cols-4 gap-4 text-center fade-in-element">
+                <div class="p-3">
+                    <p class="text-2xl sm:text-3xl font-montserrat font-black text-brand-orange">11<span class="text-base font-sans text-slate-400 font-normal">년</span></p>
+                    <p class="text-xs sm:text-sm text-slate-400 mt-1">선수 출신 현장 노하우</p>
+                </div>
+                <div class="p-3">
+                    <p class="text-2xl sm:text-3xl font-montserrat font-black text-brand-orange">1:1</p>
+                    <p class="text-xs sm:text-sm text-slate-400 mt-1">밀착 일정 & 피드백</p>
+                </div>
+                <div class="p-3">
+                    <p class="text-2xl sm:text-3xl font-montserrat font-black text-brand-orange">주 1회</p>
+                    <p class="text-xs sm:text-sm text-slate-400 mt-1">2시간 집중 실전 강좌</p>
+                </div>
+                <div class="p-3">
+                    <p class="text-2xl sm:text-3xl font-montserrat font-black text-brand-orange">100%</p>
+                    <p class="text-xs sm:text-sm text-slate-400 mt-1">시합/훈련 영상 피드백</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Section 2: Target Audience -->
+    <section id="about" class="py-20 sm:py-28 bg-white border-b border-slate-100">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16 fade-in-element">
+                <span class="text-brand-orange font-montserrat font-bold tracking-widest text-xs uppercase bg-brand-light px-3 py-1 rounded-full border border-brand-orange/20">TARGET AUDIENCE</span>
+                <h2 class="text-2xl sm:text-4xl font-black text-navy-900 mt-3 mb-4">
+                    이런 고민을 하고 계신다면,<br>
+                    <span class="text-brand-orange font-black">‘빌딩’</span>이 명확한 답을 제시해 드립니다
+                </h2>
+                <p class="text-slate-600 text-sm sm:text-base">
+                    선수의 성향과 환경에 따라 고충은 다릅니다. 각 목적에 맞춘 명확한 방향성을 정립합니다.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Card 1: 겨루기 선수 -->
+                <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 relative group fade-in-element">
+                    <div class="w-14 h-14 bg-navy-900 rounded-xl flex items-center justify-center text-brand-orange text-2xl mb-6 shadow-md group-hover:bg-brand-orange group-hover:text-white transition-colors duration-300">
+                        <i class="fa-solid fa-person-shelter"></i>
+                    </div>
+                    <span class="text-xs font-bold text-brand-orange tracking-wider uppercase">ATHLETE</span>
+                    <h3 class="text-xl font-bold text-navy-900 mt-1 mb-3">겨루기 선수</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                        열심히 차지만 득점 연결이 안 되거나, 실력은 있는데 경기장에서 제 기량을 발휘하지 못해 한계에 부딪힌 선수.
+                    </p>
+                    <ul class="space-y-2.5 text-xs sm:text-sm text-slate-700 border-t border-slate-200 pt-5">
+                        <li class="flex items-center text-slate-700">
+                            <i class="fa-solid fa-circle-check text-brand-orange mr-2"></i>
+                            <span>실전 득점용 스텝 & 타격 각도 교정</span>
+                        </li>
+                        <li class="flex items-center text-slate-700">
+                            <i class="fa-solid fa-circle-check text-brand-orange mr-2"></i>
+                            <span>상대 패턴 분석 및 세트피스 구축</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Card 2: 태권도 입시생 -->
+                <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 relative group fade-in-element">
+                    <div class="w-14 h-14 bg-navy-900 rounded-xl flex items-center justify-center text-brand-orange text-2xl mb-6 shadow-md group-hover:bg-brand-orange group-hover:text-white transition-colors duration-300">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <span class="text-xs font-bold text-brand-orange tracking-wider uppercase">ENTRANCE EXAM</span>
+                    <h3 class="text-xl font-bold text-navy-900 mt-1 mb-3">태권도 전공 입시생</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                        체육대학 겨루기 실기 및 시합 실적을 효율적으로 준비하고 싶지만, 어디서부터 손대야 할지 막막한 입시 지망생.
+                    </p>
+                    <ul class="space-y-2.5 text-xs sm:text-sm text-slate-700 border-t border-slate-200 pt-5">
+                        <li class="flex items-center text-slate-700">
+                            <i class="fa-solid fa-circle-check text-brand-orange mr-2"></i>
+                            <span>입시 실기 평가에 특화된 겨루기 완성</span>
+                        </li>
+                        <li class="flex items-center text-slate-700">
+                            <i class="fa-solid fa-circle-check text-brand-orange mr-2"></i>
+                            <span>부상 없는 효율적 멘탈/체력 관리</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Card 3: 지도자 & 관장님 -->
+                <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 relative group fade-in-element">
+                    <div class="w-14 h-14 bg-navy-900 rounded-xl flex items-center justify-center text-brand-orange text-2xl mb-6 shadow-md group-hover:bg-brand-orange group-hover:text-white transition-colors duration-300">
+                        <i class="fa-solid fa-users-gear"></i>
+                    </div>
+                    <span class="text-xs font-bold text-brand-orange tracking-wider uppercase">COACH & DIRECTOR</span>
+                    <h3 class="text-xl font-bold text-navy-900 mt-1 mb-3">선수반 지도자 · 관장</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                        체계적인 겨루기 커리큘럼 도입과 지도 방식에 변화가 필요하지만 트렌디한 겨루기 전술 업데이트가 필요한 리더.
+                    </p>
+                    <ul class="space-y-2.5 text-xs sm:text-sm text-slate-700 border-t border-slate-200 pt-5">
+                        <li class="flex items-center text-slate-700">
+                            <i class="fa-solid fa-circle-check text-brand-orange mr-2"></i>
+                            <span>현대 겨루기 트렌드에 맞춘 지도법</span>
+                        </li>
+                        <li class="flex items-center text-slate-700">
+                            <i class="fa-solid fa-circle-check text-brand-orange mr-2"></i>
+                            <span>선수별 맞춤 피드백 매뉴얼 습득</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Section 3: Why This Course -->
+    <section class="py-20 sm:py-28 bg-slate-900 text-white relative">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-5 fade-in-element">
+                    <span class="text-brand-orange font-montserrat font-bold text-xs uppercase tracking-widest bg-slate-800 px-3 py-1 rounded-full border border-slate-700">PROBLEM & SOLUTION</span>
+                    <h2 class="text-2xl sm:text-4xl font-black mt-4 mb-6 leading-tight">
+                        열심히 발을 차도<br>
+                        점수가 오르지 않는<br>
+                        <span class="text-brand-orange">진짜 이유</span>를 아십니까?
+                    </h2>
+                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-8">
+                        체력과 기술 연습만 무한 반복하는 방식으로는 최신 겨루기 판도에서 이길 수 없습니다. 
+                        <strong>상대의 거리, 타이밍, 심리, 전자호구 시스템에 적합한 메커니즘</strong>이 구축되어야 비로소 실전에서 터집니다.
+                    </p>
+                    
+                    <div class="p-5 bg-slate-800/80 border-l-4 border-brand-orange rounded-r-xl">
+                        <p class="text-slate-200 text-sm font-medium italic">
+                            "11년 간 선수로 겪고, 지도자로 가르쳐온 경험으로 확언합니다. 겨루기는 단순히 세게 차는 운동이 아닌, <strong>철저히 설계된 빌딩(BUILDING) Process</strong>입니다."
+                        </p>
+                        <p class="text-xs text-brand-orange font-bold mt-2">— 지도자 김대영</p>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 space-y-4 fade-in-element">
+                    <!-- Problem vs Solution Row 1 -->
+                    <div class="bg-slate-800/60 border border-slate-700/60 rounded-xl p-5 sm:p-6 flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between hover:border-slate-600 transition-colors">
+                        <div class="flex items-start space-x-3">
+                            <span class="w-6 h-6 rounded-full bg-red-500/20 text-red-400 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">X</span>
+                            <div>
+                                <h4 class="text-slate-400 text-xs font-semibold uppercase">기존의 문제 방식</h4>
+                                <p class="text-slate-300 text-sm sm:text-base font-medium mt-0.5">원인 모를 감점과 미득점 반복 (막연한 체력전)</p>
+                            </div>
+                        </div>
+                        <div class="hidden sm:block text-slate-600"><i class="fa-solid fa-arrow-right"></i></div>
+                        <div class="flex items-start space-x-3 sm:text-right">
+                            <span class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5 sm:order-2">O</span>
+                            <div class="sm:order-1">
+                                <h4 class="text-brand-orange text-xs font-bold uppercase">빌딩(BUILDING) 솔루션</h4>
+                                <p class="text-white text-sm sm:text-base font-bold mt-0.5">전자호구 센서 타격 각도 및 유효타 정밀교정</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Problem vs Solution Row 2 -->
+                    <div class="bg-slate-800/60 border border-slate-700/60 rounded-xl p-5 sm:p-6 flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between hover:border-slate-600 transition-colors">
+                        <div class="flex items-start space-x-3">
+                            <span class="w-6 h-6 rounded-full bg-red-500/20 text-red-400 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">X</span>
+                            <div>
+                                <h4 class="text-slate-400 text-xs font-semibold uppercase">기존의 문제 방식</h4>
+                                <p class="text-slate-300 text-sm sm:text-base font-medium mt-0.5">일률적이고 틀에 박힌 주입식 단체 미트 차기</p>
+                            </div>
+                        </div>
+                        <div class="hidden sm:block text-slate-600"><i class="fa-solid fa-arrow-right"></i></div>
+                        <div class="flex items-start space-x-3 sm:text-right">
+                            <span class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5 sm:order-2">O</span>
+                            <div class="sm:order-1">
+                                <h4 class="text-brand-orange text-xs font-bold uppercase">빌딩(BUILDING) 솔루션</h4>
+                                <p class="text-white text-sm sm:text-base font-bold mt-0.5">선수 신장/특성 맞춤형 주 무기 세트피스 제작</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Problem vs Solution Row 3 -->
+                    <div class="bg-slate-800/60 border border-slate-700/60 rounded-xl p-5 sm:p-6 flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between hover:border-slate-600 transition-colors">
+                        <div class="flex items-start space-x-3">
+                            <span class="w-6 h-6 rounded-full bg-red-500/20 text-red-400 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">X</span>
+                            <div>
+                                <h4 class="text-slate-400 text-xs font-semibold uppercase">기존의 문제 방식</h4>
+                                <p class="text-slate-300 text-sm sm:text-base font-medium mt-0.5">시합 후 "더 잘해라" 식의 모호한 총평</p>
+                            </div>
+                        </div>
+                        <div class="hidden sm:block text-slate-600"><i class="fa-solid fa-arrow-right"></i></div>
+                        <div class="flex items-start space-x-3 sm:text-right">
+                            <span class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5 sm:order-2">O</span>
+                            <div class="sm:order-1">
+                                <h4 class="text-brand-orange text-xs font-bold uppercase">빌딩(BUILDING) 솔루션</h4>
+                                <p class="text-white text-sm sm:text-base font-bold mt-0.5">경기 영상 프레임별 정밀 분석 & 1:1 피드백</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Section 4: Course Features -->
+    <section id="curriculum" class="py-20 sm:py-28 bg-slate-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16 fade-in-element">
+                <span class="text-brand-orange font-montserrat font-bold tracking-widest text-xs uppercase bg-brand-light px-3 py-1 rounded-full border border-brand-orange/20">SYSTEM FEATURES</span>
+                <h2 class="text-2xl sm:text-4xl font-black text-navy-900 mt-3 mb-4">
+                    오직 최상의 결과를 만들기 위한<br>
+                    <span class="text-brand-orange">4가지 밀착 커리큘럼 시스템</span>
+                </h2>
+                <p class="text-slate-600 text-sm sm:text-base">
+                    단순한 동영상 시청이 아닌, 일대일 소통과 실전 피드백이 결합된 하이브리드 코칭입니다.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- Feature 1 -->
+                <div class="bg-white border border-slate-200/80 rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden fade-in-element">
+                    <div class="text-4xl font-montserrat font-black text-slate-100 absolute top-4 right-6 select-none">01</div>
+                    <div class="w-12 h-12 bg-brand-light text-brand-orange rounded-xl flex items-center justify-center text-xl font-bold mb-5 border border-brand-orange/20">
+                        <i class="fa-regular fa-calendar-check"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-navy-900 mb-2">상담을 통한 1:1 날짜 & 일정 조율</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        선수나 입시생 개인의 훈련 스케줄, 학업 일정, 대회 일정에 맞추어 사전에 맞춤형 상담을 진행한 후 최적의 강의 날짜를 지정합니다.
+                    </p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="bg-white border border-slate-200/80 rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden fade-in-element">
+                    <div class="text-4xl font-montserrat font-black text-slate-100 absolute top-4 right-6 select-none">02</div>
+                    <div class="w-12 h-12 bg-brand-light text-brand-orange rounded-xl flex items-center justify-center text-xl font-bold mb-5 border border-brand-orange/20">
+                        <i class="fa-solid fa-stopwatch"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-navy-900 mb-2">매주 1회, 2시간 고밀도 실전 강의</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        체계적으로 구성된 2시간 집중 특강. 핵심 개념 원리 설명부터 스텝 응용, 상대방 대응 원리까지 실전에서 바로 쓸 수 있는 핵심만 전달합니다.
+                    </p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="bg-white border border-slate-200/80 rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden fade-in-element">
+                    <div class="text-4xl font-montserrat font-black text-slate-100 absolute top-4 right-6 select-none">03</div>
+                    <div class="w-12 h-12 bg-brand-light text-brand-orange rounded-xl flex items-center justify-center text-xl font-bold mb-5 border border-brand-orange/20">
+                        <i class="fa-solid fa-video"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-navy-900 mb-2">훈련 및 시합 영상 1:1 디테일 피드백</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        평소 훈련 영상이나 최근 시합 영상을 제출하면, 버릇·자세·타격각·거리조절 오류를 세밀하게 분석하여 디테일한 개선 지침을 제공합니다.
+                    </p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="bg-white border border-slate-200/80 rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden fade-in-element">
+                    <div class="text-4xl font-montserrat font-black text-slate-100 absolute top-4 right-6 select-none">04</div>
+                    <div class="w-12 h-12 bg-brand-light text-brand-orange rounded-xl flex items-center justify-center text-xl font-bold mb-5 border border-brand-orange/20">
+                        <i class="fa-solid fa-bullseye"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-navy-900 mb-2">실전 즉시 적용 중심의 체계적 구축</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        이론에 그치지 않고 수강 후 다음 날 훈련과 경기에서 즉시 효과를 볼 수 있는 실전 기술 위주로 세팅해 드립니다.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Section 5: Transformation -->
+    <section class="py-20 sm:py-28 bg-white border-y border-slate-200/80">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16 fade-in-element">
+                <span class="text-brand-orange font-montserrat font-bold tracking-widest text-xs uppercase bg-brand-light px-3 py-1 rounded-full border border-brand-orange/20">TRANSFORMATION</span>
+                <h2 class="text-2xl sm:text-4xl font-black text-navy-900 mt-3 mb-4">
+                    수강 후,<br>
+                    <span class="text-brand-orange">당신에게 일어날 확실한 변화</span>
+                </h2>
+                <p class="text-slate-600 text-sm sm:text-base">
+                    막연한 기대감이 아닌, 실질적인 경기력 상승과 명확한 방향을 얻게 됩니다.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <div class="p-6 bg-slate-50 border border-slate-200 rounded-2xl text-center fade-in-element">
+                    <div class="w-12 h-12 bg-navy-900 text-brand-orange rounded-full flex items-center justify-center mx-auto mb-4 font-bold text-lg">
+                        <i class="fa-solid fa-chess"></i>
+                    </div>
+                    <h3 class="font-bold text-navy-900 text-lg mb-2">경기 운영 능력</h3>
+                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                        상대의 공격 패턴을 시합 중 읽어내고, 내가 원하는 유효 타격 타이밍을 주도적으로 만들어내는 능력이 길러집니다.
+                    </p>
+                </div>
+
+                <div class="p-6 bg-slate-50 border border-slate-200 rounded-2xl text-center fade-in-element">
+                    <div class="w-12 h-12 bg-navy-900 text-brand-orange rounded-full flex items-center justify-center mx-auto mb-4 font-bold text-lg">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <h3 class="font-bold text-navy-900 text-lg mb-2">실전 감각 & 득점력</h3>
+                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                        전자호구 반응성을 이해하고 불필요한 체력 소모 없이 효율적인 유효타를 만들어내는 임팩트 감각이 완성됩니다.
+                    </p>
+                </div>
+
+                <div class="p-6 bg-slate-50 border border-slate-200 rounded-2xl text-center fade-in-element">
+                    <div class="w-12 h-12 bg-navy-900 text-brand-orange rounded-full flex items-center justify-center mx-auto mb-4 font-bold text-lg">
+                        <i class="fa-solid fa-compass"></i>
+                    </div>
+                    <h3 class="font-bold text-navy-900 text-lg mb-2">입시 준비 로드맵</h3>
+                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                        목표 대학 입시 전형 및 겨루기 실기 테스트 항목에 맞춘 체계적이고 불안감 없는 완벽한 입시 준비 솔루션.
+                    </p>
+                </div>
+
+                <div class="p-6 bg-slate-50 border border-slate-200 rounded-2xl text-center fade-in-element">
+                    <div class="w-12 h-12 bg-navy-900 text-brand-orange rounded-full flex items-center justify-center mx-auto mb-4 font-bold text-lg">
+                        <i class="fa-solid fa-award"></i>
+                    </div>
+                    <h3 class="font-bold text-navy-900 text-lg mb-2">선수반 지도 퀄리티</h3>
+                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                        선수들에게 체계적인 전술 지침을 전달할 수 있게 되며 도장 선수반의 대외 경기 실적과 신뢰도가 크게 동반 상승합니다.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- Mid-page CTA Banner -->
+            <div class="mt-16 bg-gradient-to-r from-navy-900 via-slate-800 to-navy-900 rounded-2xl p-8 sm:p-10 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl fade-in-element">
+                <div>
+                    <span class="text-brand-orange text-xs font-bold tracking-wider uppercase">LIMITED SLOTS AVAILABLE</span>
+                    <h3 class="text-xl sm:text-2xl font-bold mt-1">1:1 밀착 코칭 특성상 월별 인원이 제한됩니다.</h3>
+                    <p class="text-slate-300 text-xs sm:text-sm mt-1">망설이는 순간 이번 달 신청 가능 자리가 마감될 수 있습니다.</p>
+                </div>
+                <button onclick="openApplyModal('중단 밴너 CTA')" class="shrink-0 bg-brand-orange hover:bg-brand-orange-hover text-white font-bold text-sm sm:text-base px-8 py-3.5 rounded-xl transition-all shadow-lg shadow-brand-orange/20 whitespace-nowrap">
+                    지금 선점하기
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Section 6: Testimonials -->
+    <section id="reviews" class="py-20 sm:py-28 bg-slate-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16 fade-in-element">
+                <span class="text-brand-orange font-montserrat font-bold tracking-widest text-xs uppercase bg-brand-light px-3 py-1 rounded-full border border-brand-orange/20">REAL REVIEWS</span>
+                <h2 class="text-2xl sm:text-4xl font-black text-navy-900 mt-3 mb-4">
+                    실제 수강생들이 증명하는<br>
+                    <span class="text-brand-orange">‘빌딩’의 확실한 효과</span>
+                </h2>
+                <p class="text-slate-600 text-sm sm:text-base">
+                    현역 선수, 입시생, 지도자가 경험한 솔직한 변화의 기록입니다.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <!-- Review 1 -->
+                <div class="bg-white border border-slate-200/80 rounded-2xl p-7 shadow-sm hover:shadow-md transition-shadow fade-in-element">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-slate-200 rounded-full flex items-center justify-center text-navy-900 font-bold text-sm">
+                                최*우
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-navy-900 text-sm">최*우 수강생</h4>
+                                <span class="text-xs text-brand-orange font-medium">고등학교 겨루기 선수</span>
+                            </div>
+                        </div>
+                        <div class="text-amber-400 text-xs">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-slate-700 text-sm leading-relaxed">
+                        "시합 때마다 스텝이 꼬이고 전자호구 득점이 안 찍혀서 답답했는데, 제출한 영상에서 발목 각도랑 거리 조절 문제점을 바로 집어주셨습니다. 지도자님이 알려주신 세트피스 적용하고 전국대회에서 첫 8강 진출했습니다."
+                    </p>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="bg-white border border-slate-200/80 rounded-2xl p-7 shadow-sm hover:shadow-md transition-shadow fade-in-element">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-slate-200 rounded-full flex items-center justify-center text-navy-900 font-bold text-sm">
+                                김*진
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-navy-900 text-sm">김*진 수강생</h4>
+                                <span class="text-xs text-brand-orange font-medium">태권도학과 입시 준비생</span>
+                            </div>
+                        </div>
+                        <div class="text-amber-400 text-xs">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-slate-700 text-sm leading-relaxed">
+                        "체육대학 입시 실기를 앞두고 겨루기 실전 자신감이 많이 떨어져 있었는데, 주 1회 2시간 동안 제 습관 하나하나를 다 잡아주셨어요. 덕분에 실기고사 때 당황하지 않고 제 기량을 발휘해 수시 합격했습니다!"
+                    </p>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="bg-white border border-slate-200/80 rounded-2xl p-7 shadow-sm hover:shadow-md transition-shadow fade-in-element">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-slate-200 rounded-full flex items-center justify-center text-navy-900 font-bold text-sm">
+                                박*현
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-navy-900 text-sm">박*현 관장님</h4>
+                                <span class="text-xs text-brand-orange font-medium">태권도장 선수반 운영</span>
+                            </div>
+                        </div>
+                        <div class="text-amber-400 text-xs">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-slate-700 text-sm leading-relaxed">
+                        "아이들 선수반 지도법에 한계를 느껴 강의를 신청했습니다. 요즘 겨루기 메커니즘과 영상 피드백 방식을 제 지도 방식에 도입하니 아이들 실력 성장 속도가 2배는 빨라진 것 같습니다. 강추합니다."
+                    </p>
+                </div>
+
+                <!-- Review 4 -->
+                <div class="bg-white border border-slate-200/80 rounded-2xl p-7 shadow-sm hover:shadow-md transition-shadow fade-in-element">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-slate-200 rounded-full flex items-center justify-center text-navy-900 font-bold text-sm">
+                                이*민
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-navy-900 text-sm">이*민 선수 학부모</h4>
+                                <span class="text-xs text-brand-orange font-medium">중등부 선수 학부모</span>
+                            </div>
+                        </div>
+                        <div class="text-amber-400 text-xs">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-slate-700 text-sm leading-relaxed">
+                        "아이가 운동하면서 슬럼프가 와서 그만두고 싶어 했는데, 김대영 지도자님의 1:1 디테일 피드백 덕분에 문제점을 명확히 알고 다시 자신감을 되찾았습니다. 돈이 전혀 아깝지 않은 최고의 수업입니다."
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Section 7: Pricing -->
+    <section class="py-20 sm:py-28 bg-navy-900 text-white relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-brand-orange/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
+            
+            <div class="text-center mb-12 fade-in-element">
+                <span class="text-brand-orange font-montserrat font-bold tracking-widest text-xs uppercase bg-slate-800 px-3.5 py-1.5 rounded-full border border-slate-700">COURSE PRICE</span>
+                <h2 class="text-2xl sm:text-4xl font-black mt-3 mb-4">
+                    겨루기 역량을 완전히 바꿀<br>
+                    <span class="text-brand-orange">프리미엄 1:1 수강료 안내</span>
+                </h2>
+                <p class="text-slate-400 text-sm sm:text-base">
+                    단 한 번의 제대로 된 빌딩이 선수의 미래와 실적을 결정지어 줍니다.
+                </p>
+            </div>
+
+            <!-- Pricing Card -->
+            <div class="bg-slate-800/90 border-2 border-brand-orange/80 rounded-3xl p-8 sm:p-12 shadow-2xl relative fade-in-element">
+                
+                <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-brand-orange text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider shadow-lg">
+                    BEST VALUE ALL-IN-ONE
+                </div>
+
+                <div class="text-center pb-8 border-b border-slate-700">
+                    <h3 class="text-xl sm:text-2xl font-bold text-white mb-2">겨루기 빌딩 (BUILDING) 코칭 프로그램</h3>
+                    <p class="text-slate-400 text-xs sm:text-sm">선수 / 입시생 / 지도자 맞춤 전술 체계 구축 패키지</p>
+                    
+                    <div class="mt-6 flex items-baseline justify-center space-x-2">
+                        <span class="text-4xl sm:text-6xl font-montserrat font-black text-brand-orange">290,000</span>
+                        <span class="text-xl sm:text-2xl font-bold text-slate-300">원</span>
+                    </div>
+                    <p class="text-xs text-slate-400 mt-2">※ 1:1 일정 상담 및 훈련 피드백 전체 포함 금액</p>
+                </div>
+
+                <!-- Features Included Checklist -->
+                <div class="py-8 space-y-4 max-w-lg mx-auto">
+                    <div class="flex items-center space-x-3 text-slate-200 text-sm sm:text-base">
+                        <i class="fa-solid fa-circle-check text-brand-orange text-lg shrink-0"></i>
+                        <span>1:1 상담을 통한 개인별 학습 & 훈련 일정 조율</span>
+                    </div>
+                    <div class="flex items-center space-x-3 text-slate-200 text-sm sm:text-base">
+                        <i class="fa-solid fa-circle-check text-brand-orange text-lg shrink-0"></i>
+                        <span>실전 강의 매주 1회 (2시간) 고밀도 솔루션 진행</span>
+                    </div>
+                    <div class="flex items-center space-x-3 text-slate-200 text-sm sm:text-base">
+                        <i class="fa-solid fa-circle-check text-brand-orange text-lg shrink-0"></i>
+                        <span>개인 훈련 영상 & 실제 시합 영상 무제한 정밀 피드백</span>
+                    </div>
+                    <div class="flex items-center space-x-3 text-slate-200 text-sm sm:text-base">
+                        <i class="fa-solid fa-circle-check text-brand-orange text-lg shrink-0"></i>
+                        <span>선수별 유효 득점 타격 메커니즘 및 세트피스 전술 하사</span>
+                    </div>
+                    <div class="flex items-center space-x-3 text-slate-200 text-sm sm:text-base">
+                        <i class="fa-solid fa-circle-check text-brand-orange text-lg shrink-0"></i>
+                        <span>대학 입시 / 경기 실전용 멘탈 및 커리큘럼 가이드</span>
+                    </div>
+                </div>
+
+                <!-- Action Button -->
+                <div class="pt-4 text-center">
+                    <button onclick="openApplyModal('가격 섹션 CTA')" class="w-full sm:w-auto bg-brand-orange hover:bg-brand-orange-hover text-white font-bold text-lg px-10 py-4 rounded-xl transition-all shadow-xl shadow-brand-orange/30 transform hover:-translate-y-0.5 active:translate-y-0">
+                        지금 신청하기
+                    </button>
+                    <p class="text-xs text-slate-400 mt-4">
+                        <i class="fa-solid fa-lock mr-1"></i> 개인 정보는 안전하게 보호되며, 신청 완료 후 김대영 지도자가 직접 순차 연락드립니다.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Section 8: FAQ -->
+    <section id="faq" class="py-20 sm:py-28 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            
+            <div class="text-center mb-16 fade-in-element">
+                <span class="text-brand-orange font-montserrat font-bold tracking-widest text-xs uppercase bg-brand-light px-3 py-1 rounded-full border border-brand-orange/20">FREQUENTLY ASKED</span>
+                <h2 class="text-2xl sm:text-4xl font-black text-navy-900 mt-3 mb-4">
+                    자주 묻는 질문 (FAQ)
+                </h2>
+                <p class="text-slate-600 text-sm sm:text-base">
+                    궁금하신 사항을 명쾌하게 해결해 드립니다.
+                </p>
+            </div>
+
+            <div class="space-y-4 fade-in-element">
+                
+                <!-- FAQ Item 1 -->
+                <div class="border border-slate-200 rounded-xl overflow-hidden transition-colors">
+                    <button onclick="toggleFaq(this)" class="w-full p-5 text-left font-bold text-navy-900 flex justify-between items-center bg-slate-50 hover:bg-slate-100/80 transition-colors">
+                        <span class="text-sm sm:text-base">Q. 정확히 어떤 분들이 수강하면 가장 효과적인가요?</span>
+                        <i class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300"></i>
+                    </button>
+                    <div class="hidden p-5 text-xs sm:text-sm text-slate-600 bg-white border-t border-slate-100 leading-relaxed">
+                        겨루기 실력 향상에 한계를 느끼는 현역 선수, 태권도학과 대학 입시를 준비하는 입시생, 그리고 선수반 관원들의 실전 실력을 체계적으로 끌어올리고 싶은 태권도장 관장님 및 사범님께 최적화되어 있습니다.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="border border-slate-200 rounded-xl overflow-hidden transition-colors">
+                    <button onclick="toggleFaq(this)" class="w-full p-5 text-left font-bold text-navy-900 flex justify-between items-center bg-slate-50 hover:bg-slate-100/80 transition-colors">
+                        <span class="text-sm sm:text-base">Q. 수강 일정과 시간 조율은 어떻게 진행되나요?</span>
+                        <i class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300"></i>
+                    </button>
+                    <div class="hidden p-5 text-xs sm:text-sm text-slate-600 bg-white border-t border-slate-100 leading-relaxed">
+                        신청서를 작성해 주시면, 김대영 지도자가 직접 1:1로 연락을 드립니다. 수강생의 학교/훈련 스케줄 및 시합 일정을 고려하여 서로 최적인 날짜와 시간대로 매주 1회(2시간) 조율하여 확정합니다.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="border border-slate-200 rounded-xl overflow-hidden transition-colors">
+                    <button onclick="toggleFaq(this)" class="w-full p-5 text-left font-bold text-navy-900 flex justify-between items-center bg-slate-50 hover:bg-slate-100/80 transition-colors">
+                        <span class="text-sm sm:text-base">Q. 훈련 영상 및 시합 영상 피드백은 어떤 방식으로 이루어지나요?</span>
+                        <i class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300"></i>
+                    </button>
+                    <div class="hidden p-5 text-xs sm:text-sm text-slate-600 bg-white border-t border-slate-100 leading-relaxed">
+                        스마트폰으로 촬영한 본인의 평소 미트 훈련, 겨루기 연습, 혹은 최근 공식 시합 영상(클립/전체)을 보내주시면, 프레임 단위로 타격 각도·스텝 오류·타이밍 부재를 분석하여 음성 카톡/영상 음성 피드백 및 맞춤 교정 가이드를 드립니다.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="border border-slate-200 rounded-xl overflow-hidden transition-colors">
+                    <button onclick="toggleFaq(this)" class="w-full p-5 text-left font-bold text-navy-900 flex justify-between items-center bg-slate-50 hover:bg-slate-100/80 transition-colors">
+                        <span class="text-sm sm:text-base">Q. 모바일에서도 간편하게 신청이 가능한가요?</span>
+                        <i class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300"></i>
+                    </button>
+                    <div class="hidden p-5 text-xs sm:text-sm text-slate-600 bg-white border-t border-slate-100 leading-relaxed">
+                        네, 가능합니다. 본 랜딩페이지 상단/하단의 [지금 신청하기] 버튼을 누르시면 모바일에서도 30초 만에 간편하게 성함과 연락처, 대상 분류를 선택하여 수강 신청 및 상담 예약을 진행하실 수 있습니다.
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Section 9: Final CTA -->
+    <section class="py-20 sm:py-28 bg-gradient-to-b from-navy-900 to-navy-950 text-white text-center relative overflow-hidden">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 relative z-10 fade-in-element">
+            
+            <h2 class="text-3xl sm:text-5xl font-black mb-6 leading-tight">
+                변화하지 않는 연습은<br>
+                <span class="text-brand-orange">시간만 낭비할 뿐입니다</span>
+            </h2>
+
+            <p class="text-slate-300 text-sm sm:text-lg max-w-2xl mx-auto mb-10 leading-relaxed font-light">
+                11년 동안 직접 겪어온 시합장의 모든 공기, 승패를 가른 한 끗 차이의 전술을 전달합니다. <br class="hidden sm:block">
+                더 이상 고민하지 마시고, 지금 당신의 겨루기를 새롭게 빌딩 하세요.
+            </p>
+
+            <button onclick="openApplyModal('최종 하단 CTA')" class="bg-brand-orange hover:bg-brand-orange-hover text-white font-bold text-lg sm:text-xl px-12 py-5 rounded-2xl transition-all duration-300 shadow-2xl shadow-brand-orange/40 transform hover:-translate-y-1 active:translate-y-0 inline-flex items-center space-x-3 group">
+                <span>지금 신청하기</span>
+                <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+            </button>
+
+            <p class="text-xs text-slate-400 mt-6">
+                선수반 / 입시반 / 개인 1:1 맞춤 코칭 상담 진행 중
+            </p>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-navy-950 text-slate-500 py-12 border-t border-slate-800/60 text-xs sm:text-sm">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+            
+            <div class="flex flex-col items-center md:items-start space-y-2">
+                <div class="flex items-center space-x-2">
+                    <span class="font-montserrat font-black text-lg text-white">BUILDING</span>
+                    <span class="text-xs text-slate-400">| 김대영 태권도 외길 인생</span>
+                </div>
+                <p class="text-slate-400 text-center md:text-left">
+                    선수 11년 → 사범 → 관장 | 직접 겪고 직접 가르칩니다.
+                </p>
+                <p class="text-slate-600">© BUILDING. All rights reserved.</p>
+            </div>
+
+            <div class="flex items-center space-x-6 text-slate-400">
+                <a href="https://instagram.com" target="_blank" class="hover:text-brand-orange transition-colors flex items-center space-x-1">
+                    <i class="fa-brands fa-instagram text-lg"></i>
+                    <span>@kdy_tkd</span>
+                </a>
+                <span class="text-slate-700">|</span>
+                <span class="text-slate-400">1:1 PT · 입시반 · 겨루기반 문의</span>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- Application Modal Drawer -->
+    <div id="applyModal" class="fixed inset-0 z-50 hidden bg-navy-950/80 backdrop-blur-sm items-center justify-center p-4 transition-opacity duration-300 opacity-0">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative border border-slate-100 transform transition-transform duration-300 scale-95" id="modalContainer">
+            
+            <!-- Close Button -->
+            <button onclick="closeApplyModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-600 w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center transition-colors">
+                <i class="fa-solid fa-xmark text-base"></i>
+            </button>
+
+            <div class="mb-6">
+                <span class="text-brand-orange text-xs font-bold tracking-widest uppercase">APPLICATION FORM</span>
+                <h3 class="text-2xl font-black text-navy-900 mt-1">겨루기 빌딩 수강 신청</h3>
+                <p class="text-xs sm:text-sm text-slate-500 mt-1">정보를 입력해주시면 김대영 지도자가 직접 1:1 연락드립니다.</p>
+            </div>
+
+            <form id="landingApplyForm" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                
+                <!-- Target Select -->
+                <div>
+                    <label class="block text-xs font-bold text-navy-900 mb-1.5">신청자 구분 <span class="text-brand-orange">*</span></label>
+                    <select required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 focus:outline-none focus:border-brand-orange transition-colors">
+                        <option value="" disabled selected>구분을 선택해 주세요</option>
+                        <option value="athlete">겨루기 현역 선수</option>
+                        <option value="entrance">태권도 전공 대학 입시생</option>
+                        <option value="coach">선수반 지도자 / 관장님</option>
+                        <option value="parent">학부모님 상담</option>
+                    </select>
+                </div>
+
+                <!-- Name Input -->
+                <div>
+                    <label class="block text-xs font-bold text-navy-900 mb-1.5">성함 (신청자) <span class="text-brand-orange">*</span></label>
+                    <input type="text" required placeholder="예: 홍길동" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 focus:outline-none focus:border-brand-orange transition-colors">
+                </div>
+
+                <!-- Phone Input -->
+                <div>
+                    <label class="block text-xs font-bold text-navy-900 mb-1.5">연락처 <span class="text-brand-orange">*</span></label>
+                    <input type="tel" required placeholder="010-0000-0000" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 focus:outline-none focus:border-brand-orange transition-colors">
+                </div>
+
+                <!-- Note / Message Input -->
+                <div>
+                    <label class="block text-xs font-bold text-navy-900 mb-1.5">현재 갖고 계신 가장 큰 고민 (선택)</label>
+                    <textarea rows="3" placeholder="예: 시합 때 전자호구 득점이 잘 안 납니다 / 입시 실기 전략이 필요합니다." class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 focus:outline-none focus:border-brand-orange transition-colors resize-none"></textarea>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="w-full bg-brand-orange hover:bg-brand-orange-hover text-white font-bold text-base py-4 rounded-xl transition-all shadow-lg shadow-brand-orange/20 mt-2">
+                    신청서 제출하기 (290,000원 안내)
+                </button>
+
+                <p class="text-[11px] text-center text-slate-400">
+                    제출 즉시 예약 접수가 진행되며, 순차적으로 연락을 드립니다.
+                </p>
+
+            </form>
+
+            <!-- Success State Message (Hidden by default) -->
+            <div id="modalSuccess" class="hidden text-center py-8">
+                <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <h4 class="text-2xl font-black text-navy-900 mb-2">신청이 정상 완료되었습니다!</h4>
+                <p class="text-sm text-slate-600 leading-relaxed mb-6">
+                    입력해주신 연락처로 김대영 지도자가 직접 1:1 상담 및 일정 조율을 위해 빠르게 연락드리겠습니다.
+                </p>
+                <button onclick="closeApplyModal()" class="bg-navy-900 text-white font-bold text-sm px-8 py-3 rounded-xl hover:bg-slate-800 transition-colors">
+                    확인
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Scroll Fade In Observer
+            const fadeElements = document.querySelectorAll('.fade-in-element');
+            
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); // Animates once
+                    }
+                });
+            }, observerOptions);
+
+            fadeElements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+
+        function openApplyModal(source) {
+            console.log('Opened apply modal from: ' + source);
+            const modal = document.getElementById('applyModal');
+            const container = document.getElementById('modalContainer');
+            
+            // Reset form view
+            document.getElementById('landingApplyForm').classList.remove('hidden');
+            document.getElementById('modalSuccess').classList.add('hidden');
+
+            modal.classList.remove('hidden');
+            modal.classList.add('modal-active');
+
+            setTimeout(() => {
+                container.classList.remove('scale-95');
+                container.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeApplyModal() {
+            const modal = document.getElementById('applyModal');
+            const container = document.getElementById('modalContainer');
+
+            container.classList.remove('scale-100');
+            container.classList.add('scale-95');
+
+            setTimeout(() => {
+                modal.classList.remove('modal-active');
+                modal.classList.add('hidden');
+            }, 200);
+        }
+
+        function toggleFaq(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('.fa-chevron-down');
+            
+            const isOpen = !content.classList.contains('hidden');
+
+            // Close all open FAQs
+            document.querySelectorAll('#faq .space-y-4 > div').forEach(item => {
+                const itemContent = item.querySelector('div:nth-child(2)');
+                const itemIcon = item.querySelector('.fa-chevron-down');
+                if (itemContent && itemIcon) {
+                    itemContent.classList.add('hidden');
+                    itemIcon.style.transform = 'rotate(0deg)';
+                }
+            });
+
+            if (!isOpen) {
+                content.classList.remove('hidden');
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            
+            // Show success state
+            document.getElementById('landingApplyForm').classList.add('hidden');
+            document.getElementById('modalSuccess').classList.remove('hidden');
+        }
+
+        // Close modal when clicking on backdrop
+        document.getElementById('applyModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeApplyModal();
+            }
+        });
+    </script>
+</body>
+</html>
