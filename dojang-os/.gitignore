@@ -1,0 +1,5 @@
+node_modules/
+test-results/
+playwright-report/
+dojang-backup-*.json
+dojang-before-restore*.json
