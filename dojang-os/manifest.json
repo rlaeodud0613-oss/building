@@ -1,0 +1,9 @@
+{
+  "name": "태권도장 AI 운영 비서",
+  "short_name": "DOJANG OS",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#080d19",
+  "theme_color": "#0b1020",
+  "lang": "ko-KR"
+}
