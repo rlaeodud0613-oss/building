@@ -1,0 +1,40 @@
+name: Dojang OS checks
+on:
+  pull_request:
+    paths:
+      - 'dojang-os/**'
+      - '.github/workflows/dojang-os-checks.yml'
+permissions:
+  contents: read
+concurrency:
+  group: dojang-checks-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: dojang-os
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: dojang-os/package-lock.json
+      - run: npm ci --ignore-scripts
+      - run: npm test
+      - run: npx playwright install --with-deps chromium webkit
+      - run: npm run test:browser
+      - name: Save synthetic-data test report and screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dojang-browser-results
+          path: |
+            dojang-os/playwright-report/
+            dojang-os/test-results/
+          retention-days: 7
