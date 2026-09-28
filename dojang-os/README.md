@@ -79,3 +79,15 @@ npm test
 ```
 
 별도 빌드나 서비스 API 키 없이 실행합니다. 테스트에는 가상 수련생만 사용합니다.
+
+### 실제 브라우저 자동 검사
+
+```sh
+npm ci
+npx playwright install --with-deps chromium webkit
+npm run test:browser
+```
+
+6가지 실제 사용 흐름을 데스크톱 1440px, 태블릿 768px, 모바일 390px Chromium, 모바일 390px WebKit에서 반복합니다(총 24개). PR 변경 시 GitHub Actions `Dojang OS checks`가 기존 32개 로직/DOM 테스트와 함께 실행됩니다. 가상 수련생만 사용하며 테스트 보고서·출석 화면 캡처는 Actions의 `dojang-browser-results` 결과물에 7일 보관됩니다. WebKit 모바일 모의 실행은 실제 iPhone 하드웨어 테스트와 다릅니다.
+
+처음 사용하는 순서는 [START-HERE.md](./START-HERE.md)를 참고하세요.
